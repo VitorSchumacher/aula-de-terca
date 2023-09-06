@@ -2,10 +2,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { styled } from "styled-components";
 
 export const Button = styled.TouchableOpacity`
-  width: 70%;
+  width: ${(props) => (props.size ? props.size : "70")}%;
   height: 5vh;
-  position: absolute;
-  bottom: 5%;
+  position: ${(props) => (props.absolute ? "absolute" : null)};
+  bottom: ${(props) => (props.absolute ? " 5%" : null)};
 `;
 
 export const TextButton = styled.Text`
@@ -15,19 +15,25 @@ export const TextButton = styled.Text`
   font-family: "Poppins_400Regular";
 `;
 
-const ButtonGradient = ({ title, onPress }) => {
+const ButtonGradient = ({ title, onPress, size, absolute }) => {
+  let ButtonSize = 60;
+  switch (size) {
+    case "small": {
+      ButtonSize = 40;
+    }
+  }
   return (
-    <Button onPress={() => onPress()}>
+    <Button onPress={() => onPress()} absolute={absolute} size={ButtonSize}>
       <LinearGradient
         colors={["#4A4A4A", "#179AC3"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={{
           width: "100%",
-          height: 60,
+          height: ButtonSize,
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: 15,
+          borderRadius: ButtonSize/4,
         }}
       >
         <TextButton>{title}</TextButton>

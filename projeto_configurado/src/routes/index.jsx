@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StartPage from "../pages/StartPage";
 import Home from "../pages/Home";
-import About from "../pages/About";
+import Info from "../pages/Info";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,8 +31,8 @@ const Routes = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="About"
-          component={About}
+          name="Info"
+          component={Info}
           options={{ title: "", headerBackTitleVisible: false }}
         />
       </Stack.Navigator>

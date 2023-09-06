@@ -1,17 +1,28 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { Text, View } from "react-native";
-import { Main } from "./styled";
+import { Text } from "react-native";
+import {
+  ListItensMain,
+  ListItensScroll,
+  Main,
+  TextList,
+} from "./styled";
 import { getUsers } from "../../services/users";
 import CardHome from "../../components/CardHome";
 import { ScrollView } from "react-native";
+import LoadingScreen from "../Loading";
+import { useNavigation } from "@react-navigation/core";
+import InputFilter from "../../components/InputFilter";
 
 const Home = () => {
+  const { navigate } = useNavigation();
   const [user, setUser] = useState();
+  const [filter, setFiltered] = useState();
   const getData = useCallback(async () => {
     try {
       const { data } = await getUsers();
       setUser(data);
+      setFiltered(data);
     } catch (e) {
       console.log(e);
     }
@@ -20,8 +31,20 @@ const Home = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  const navigateUser = (id) => {
+    navigate("Info", { id: id });
+  };
+
+  const handleFilterChange = filterText => {
+    const filtered = user.filter(game =>
+      game.name.toLowerCase().includes(filterText.toLowerCase()),
+    );
+    setFiltered(filtered);
+  };
+
   if (!user) {
-    return null;
+    return <LoadingScreen />;
   }
   return (
     <LinearGradient
@@ -30,20 +53,17 @@ const Home = () => {
       end={{ x: 0, y: 1 }}
       style={{ flex: 1 }}
     >
-      <ScrollView>
-        <Main>
-          <View>
-            <Text>input bar</Text>
-          </View>
-          <View>
-            {user.map((user) => (
-              <CardHome user={user} />
+      <Main>
+        <ListItensScroll>
+          <ListItensMain>
+          <InputFilter handleFilterChange={handleFilterChange} />
+            <TextList>Your Employees</TextList>
+            {filter?.map((user) => (
+              <CardHome key={user.id} user={user} onPress={navigateUser} />
             ))}
-            <Text>componente</Text>
-          </View>
-          <Text>Tela home</Text>
-        </Main>
-      </ScrollView>
+          </ListItensMain>
+        </ListItensScroll>
+      </Main>
     </LinearGradient>
   );
 };

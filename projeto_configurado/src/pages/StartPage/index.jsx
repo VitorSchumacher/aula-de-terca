@@ -19,7 +19,7 @@ const StartPage = () => {
         <TextNor>
           Eliminate physical cards, get virtual{"\n"}data in your hand.
         </TextNor>
-        <ButtonGradient title="Get Start" onPress={() => navigate("Home")}/>
+        <ButtonGradient title="Get Start" onPress={() => navigate("Home")} absolute={true}/>
       </Main>
     </LinearGradient>
   );
