@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 const UserImage = styled.Image`
   width: ${(props) => (props.size ? props.size : "60")}px;
   height: ${(props) => (props.size ? props.size : "60")}px;
-  border-radius: 60px;
+  border-radius: 90px;
 `;
 
 const ProfilePicture = ({ image, size, aling }) => {
@@ -15,7 +15,7 @@ const ProfilePicture = ({ image, size, aling }) => {
       break
     }
     case "large": {
-      userSize = 100;
+      userSize = 130;
       break
     }
   }

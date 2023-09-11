@@ -6,7 +6,7 @@ import ProfilePicture from "../ProfilePicture";
 
 const Main = styled.View`
   background-color: #fff;
-  margin: 2% 0;
+  margin: 3% 0;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@ const CardHome = ({ user, onPress }) => {
     <Main key={user.id}>
     <ProfilePicture image={user.image} size="medium" aling="center"/>
       <TextName>{user.name}</TextName>
-      <ButtonGradient title="Details" onPress={() => onPress(user.id)} size="small"/>
+      <ButtonGradient title="Details" onPress={onPress} size="small"/>
     </Main>
   );
 };

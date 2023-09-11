@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 export const ViewInput = styled.View`
   background-color: #f1f3f9;
   width: 100%;
-  margin: 10% 0;
+  margin: 15% 0 7%;
   display: flex;
   flex-direction: row;
   padding: 3% 2%;
@@ -24,7 +24,7 @@ const InputFilter = ({ handleFilterChange }) => {
   return (
     <ViewInput>
       <Input
-        placeholder="Digite algo"
+        placeholder="Search here..."
         onChangeText={(text) => handleFilterChange(text)}
       />
       <TouchableOpacity style={{ marginHorizontal: "2%" }}>

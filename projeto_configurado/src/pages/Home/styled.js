@@ -9,12 +9,11 @@ export const Main = styled.View`
 `;
 export const ListItensScroll = styled.ScrollView`
   width: 100%;
+  flex: 1;
 `;
 export const ListItensMain = styled.View`
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const TextList = styled.Text`

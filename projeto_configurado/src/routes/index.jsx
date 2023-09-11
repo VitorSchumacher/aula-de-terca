@@ -33,7 +33,7 @@ const Routes = () => {
         <Stack.Screen
           name="Info"
           component={Info}
-          options={{ title: "", headerBackTitleVisible: false }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
